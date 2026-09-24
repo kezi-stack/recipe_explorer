@@ -24,7 +24,16 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _descriptionController = TextEditingController();
   final _ingredientsController = TextEditingController();
 
-  static const _emojiChoices = ['🍽️', '🍝', '🍜', '🥗', '🌮', '🍰', '🍲', '🥞'];
+  static const _emojiChoices = [
+    '🍽️',
+    '🍝',
+    '🍜',
+    '🥗',
+    '🌮',
+    '🍰',
+    '🍲',
+    '🥞'
+  ];
   static const _categoryChoices = [
     'Italien',
     'Asiatique',
@@ -117,7 +126,8 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                   children: [
                     for (final emoji in _emojiChoices)
                       ChoiceChip(
-                        label: Text(emoji, style: const TextStyle(fontSize: 18)),
+                        label:
+                            Text(emoji, style: const TextStyle(fontSize: 18)),
                         selected: _selectedEmoji == emoji,
                         onSelected: (_) =>
                             setState(() => _selectedEmoji = emoji),
@@ -140,7 +150,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  value: _selectedCategory,
+                  initialValue: _selectedCategory,
                   decoration: const InputDecoration(
                     labelText: 'Catégorie',
                     prefixIcon: Icon(Icons.category_outlined),

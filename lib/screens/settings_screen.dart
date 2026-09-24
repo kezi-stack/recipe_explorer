@@ -32,35 +32,30 @@ class SettingsScreen extends StatelessWidget {
                     horizontal: 16,
                     vertical: 8,
                   ),
-                  child: Column(
-                    children: [
-                      RadioListTile<ThemeMode>(
-                        title: const Text('Clair'),
-                        secondary: const Icon(Icons.light_mode_outlined),
-                        value: ThemeMode.light,
-                        groupValue: themeProvider.themeMode,
-                        onChanged: (mode) =>
-                            themeProvider.setThemeMode(mode!),
-                      ),
-                      RadioListTile<ThemeMode>(
-                        title: const Text('Sombre'),
-                        secondary: const Icon(Icons.dark_mode_outlined),
-                        value: ThemeMode.dark,
-                        groupValue: themeProvider.themeMode,
-                        onChanged: (mode) =>
-                            themeProvider.setThemeMode(mode!),
-                      ),
-                      RadioListTile<ThemeMode>(
-                        title: const Text('Système'),
-                        secondary: const Icon(
-                          Icons.settings_suggest_outlined,
+                  child: RadioGroup<ThemeMode>(
+                    groupValue: themeProvider.themeMode,
+                    onChanged: (mode) {
+                      if (mode != null) themeProvider.setThemeMode(mode);
+                    },
+                    child: const Column(
+                      children: [
+                        RadioListTile<ThemeMode>(
+                          title: Text('Clair'),
+                          secondary: Icon(Icons.light_mode_outlined),
+                          value: ThemeMode.light,
                         ),
-                        value: ThemeMode.system,
-                        groupValue: themeProvider.themeMode,
-                        onChanged: (mode) =>
-                            themeProvider.setThemeMode(mode!),
-                      ),
-                    ],
+                        RadioListTile<ThemeMode>(
+                          title: Text('Sombre'),
+                          secondary: Icon(Icons.dark_mode_outlined),
+                          value: ThemeMode.dark,
+                        ),
+                        RadioListTile<ThemeMode>(
+                          title: Text('Système'),
+                          secondary: Icon(Icons.settings_suggest_outlined),
+                          value: ThemeMode.system,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -77,7 +72,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                       leading: const Icon(Icons.favorite_rounded),
                       title: const Text('Recettes favorites'),
-                      trailing: Text('${recipeProvider.favoriteRecipes.length}'),
+                      trailing:
+                          Text('${recipeProvider.favoriteRecipes.length}'),
                     ),
                     ListTile(
                       leading: const Icon(Icons.category_rounded),
@@ -89,11 +85,11 @@ class SettingsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               const SectionTitle(title: 'À propos'),
-              Card(
+              const Card(
                 child: ListTile(
-                  leading: const Icon(Icons.info_outline_rounded),
-                  title: const Text('Recipe Explorer'),
-                  subtitle: const Text(
+                  leading: Icon(Icons.info_outline_rounded),
+                  title: Text('Recipe Explorer'),
+                  subtitle: Text(
                     'Projet de certification Flutter — multi-écrans, '
                     'navigation GoRouter, formulaire validé et thème '
                     'clair/sombre.',
